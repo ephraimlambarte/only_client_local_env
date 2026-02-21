@@ -10,7 +10,7 @@ services:
             - 'host.docker.internal:host-gateway'
         ports:
             - '${SERVICE_BOOKING_PORT:-80}:80'
-            - '${SERVICE_BOOKING_VITE_PORT:-5173}:${SERVICE_BOOKING_VITE_PORT:-5173}'
+            - '${SERVICE_BOOKING_VITE_PORT:-5173}:5173'
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
@@ -215,7 +215,7 @@ services:
         image: 'stripe/stripe-cli'
         networks:
             - sail
-        command: 'listen --api-key ${STRIPE_SECRET} --forward-to only_client_crm.test/stripe/webhook'
+        command: 'listen --api-key ${STRIPE_SECRET} --forward-to http://only_client_crm.test:80/stripe/webhook'
         depends_on:
             - only_client_crm.test
 networks:
