@@ -89,6 +89,12 @@ services:
             QUEUE_CONNECTION: ${QUEUE_CONNECTION}
             DB_HOST: ${DB_HOST}
             REDIS_HOST: ${REDIS_HOST}
+    gotenberg:
+        image: 'gotenberg/gotenberg:8'
+        ports:
+            - '${FORWARD_GOTENBERG_PORT:-3000}:3000'
+        networks:
+            - sail
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
