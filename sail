@@ -92,9 +92,9 @@ if [[ -n "${APP_SERVICE:-}" ]]; then
     case "$app_cmd" in
         up)
             if has_build_flag "$@"; then
-                run_compose up "$@" "$APP_SERVICE"
-            else
                 run_compose up "$@" --build "$APP_SERVICE"
+            else
+                run_compose up "$@" "$APP_SERVICE"
             fi
             ;;
         composer)
@@ -127,9 +127,9 @@ shift
 
 if [[ "$global_cmd" == "up" ]]; then
     if has_build_flag "$@"; then
-        run_compose up "$@"
-    else
         run_compose up "$@" --build
+    else
+        run_compose up "$@" 
     fi
 else
     run_compose "$global_cmd" "$@"
